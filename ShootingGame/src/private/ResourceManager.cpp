@@ -1,4 +1,6 @@
 #include "ResourceManager.h"
+#include <glad/glad.h>
+#include <stb_image/stb_image.h>
 #include <fstream>
 #include <sstream>
 
@@ -52,7 +54,7 @@ Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* 
 			gsFile.close();
 			geometryCode = gsStream.str();
 		}
-	} catch (std::exception& e) {
+	} catch (std::exception e) {
 		std::cout << "[ERROR SHADER]: Failed to read shader files\n";
 	}
 	const char* vsCode = vertexCode.c_str();

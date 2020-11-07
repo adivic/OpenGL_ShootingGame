@@ -2,8 +2,6 @@
 #ifndef RESOURCE_MANAGER_H
 #define RESOURCE_MANAGER_H
 
-#include <glad/glad.h>
-#include <stb_image/stb_image.h>
 #include "Texture.h"
 #include "Shader.h"
 #include <string>

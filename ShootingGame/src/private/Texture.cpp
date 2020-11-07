@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include <glad/glad.h>
 
 Texture::Texture() : Width(0), Height(0), internalFormat(GL_RGB), imageFormat(GL_RGB),
 wrap_s(GL_REPEAT), wrap_t(GL_REPEAT), filter_min(GL_LINEAR), filter_max(GL_LINEAR) {

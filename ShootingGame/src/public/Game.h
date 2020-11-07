@@ -2,7 +2,14 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
+#include <GLFW\glfw3.h>
+
+#include "CameraComponent.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+#include "ResourceManager.h"
 
 class Game {
 public:
@@ -15,8 +22,9 @@ public:
 	void update(float deltaTime);
 	void render();
 
-private:
+	CameraComponent* playerCamera;
 
+private:
 
 };
 #endif // !GAME_H

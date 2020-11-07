@@ -36,6 +36,15 @@
     <ClCompile Include="src\private\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\private\CameraComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vendor\glad\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\private\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\public\Game.h">
@@ -899,6 +908,12 @@
     <ClInclude Include="src\public\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\public\CameraComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\glm\detail\func_common.inl">
@@ -1309,5 +1324,17 @@
     <None Include="src\vendor\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="src\assets\shaders\Camera.vert" />
+    <None Include="src\assets\shaders\Camera.frag" />
+    <None Include="src\assets\shaders\Texture.vert" />
+    <None Include="src\assets\shaders\Texture.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\assets\textures\floor.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\textures\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
