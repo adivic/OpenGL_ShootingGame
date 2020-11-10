@@ -5,7 +5,8 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void key_callback(GLFWwindow* window, int key, int scancode, int action);
 
 Game game(SCR_WIDTH, SCR_HEIGHT);
 float pitch, yaw;
@@ -34,7 +35,8 @@ int main(void) {
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
-    glfwSetScrollCallback(window, scroll_callback);
+    glfwSetKeyCallback(window, key_callback);
+    glfwSetMouseButtonCallback(window, key_callback);
 
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
@@ -60,7 +62,7 @@ int main(void) {
         lastFrame = currentFrame;
 
         /* Process Player Input */
-        game.processInput(window, deltaTime);
+        game.processInput(deltaTime);
 
         /* Update Game */
         game.update(deltaTime);
@@ -101,9 +103,28 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
 
     lastX = xpos;
     lastY = ypos;
-    game.playerCamera->processLook(xoffset, yoffset);
+    game.player->mouseInput(xoffset, yoffset);
 }
 
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
-    game.playerCamera->processScroll(yoffset);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode) {
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+    
+    if (key >= 0 && key < 1024) {
+        if (action == GLFW_PRESS)
+            game.buttons[key] = true;
+        else if (action == GLFW_RELEASE) {
+            game.buttons[key] = false;
+            game.buttonsPressed[key] = false;
+        }
+    }
+}
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action) {
+    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
+        game.buttons[key] = true;
+    } else if (action == GLFW_RELEASE) {
+        game.buttons[key] = false;
+        game.buttonsPressed[key] = false;
+    }  
 }

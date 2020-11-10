@@ -36,13 +36,31 @@
     <ClCompile Include="src\private\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\private\CameraComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\vendor\glad\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\private\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\private\Components\CameraComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\private\Pawn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\private\Utility\Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\private\Utility\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\private\Utility\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\private\Components\Actor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\private\Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -908,10 +926,31 @@
     <ClInclude Include="src\public\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\public\CameraComponent.h">
+    <ClInclude Include="src\public\Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\public\Level.h">
+    <ClInclude Include="src\public\Components\CameraComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Pawn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Utility\Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Utility\Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Utility\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Components\Actor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Utility\Rotator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Weapon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1328,6 +1367,10 @@
     <None Include="src\assets\shaders\Camera.frag" />
     <None Include="src\assets\shaders\Texture.vert" />
     <None Include="src\assets\shaders\Texture.frag" />
+    <None Include="src\assets\models\Gun\M4A1.mtl" />
+    <None Include="src\assets\shaders\Model.vert" />
+    <None Include="src\assets\shaders\Model.frag" />
+    <None Include="src\assets\models\Gun\acr.mtl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\assets\textures\floor.jpg">
@@ -1336,5 +1379,24 @@
     <Image Include="src\assets\textures\container.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="src\assets\models\Gun\Tex_0004_1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\models\Gun\Tex_0006_1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\models\Gun\Tex_0006_3.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\models\Gun\Tex_0012_1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\models\Gun\Tex_0012_3.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="src\assets\models\Gun\M4A1.obj" />
+    <Object Include="src\assets\models\Gun\acr.obj" />
   </ItemGroup>
 </Project>

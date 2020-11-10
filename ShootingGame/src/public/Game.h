@@ -3,28 +3,32 @@
 #define GAME_H
 
 #include <glad/glad.h>
-#include <GLFW\glfw3.h>
+#include <GLFW/glfw3.h>
 
-#include "CameraComponent.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-
+#include "Pawn.h"
 #include "ResourceManager.h"
+
+constexpr float GRAVITY = 9.81f;
 
 class Game {
 public:
 	unsigned int Width, Height;
+	bool buttons[1024];
+	bool buttonsPressed[1024];
+
 	Game(unsigned int width, unsigned int height);
 	~Game();
 
 	void init();
-	void processInput(GLFWwindow* window, float deltaTime);
+	void processInput(float deltaTime);
 	void update(float deltaTime);
 	void render();
 
-	CameraComponent* playerCamera;
+	Pawn* player;
 
 private:
-
+	class Level* level;
 };
 #endif // !GAME_H

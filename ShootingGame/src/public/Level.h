@@ -7,7 +7,7 @@
 
 class Level {
 public:
-	Level(unsigned int width, unsigned int height, class CameraComponent* playerCamera);
+	Level(unsigned int width, unsigned int height, class Pawn* playerPawn);
 	
 	void init();
 	void render();
@@ -15,8 +15,7 @@ public:
 private:
 	unsigned int floorVAO, cubeVAO;
 
-
-	CameraComponent* camera;
+	Pawn* player;
 	unsigned int Width, Height;
 };
 
