@@ -123,6 +123,8 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 void key_callback(GLFWwindow* window, int key, int scancode, int action) {
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
         game.buttons[key] = true;
+    } else if(glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
+        game.buttons[key] = true;
     } else if (action == GLFW_RELEASE) {
         game.buttons[key] = false;
         game.buttonsPressed[key] = false;

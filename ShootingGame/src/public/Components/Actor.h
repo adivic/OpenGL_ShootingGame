@@ -39,7 +39,7 @@ public:
 	inline glm::vec3 getSize() { return size; }
 	
 	/* Setters */
-	inline void setPlayerRotation(FRotator rot) { rotation = rot; }
+	inline void setActorRotation(FRotator rot) { rotation = rot; }
 	inline void setForwardVector(glm::vec3 vec) { front = vec; }
 	inline void setPosition(glm::vec3 vec) { position = vec; }
 	inline void setSize(glm::vec3 vec) { size = vec; }

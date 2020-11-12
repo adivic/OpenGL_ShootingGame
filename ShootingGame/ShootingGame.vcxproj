@@ -462,10 +462,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\assets\models\Gun\acr.mtl" />
-    <None Include="src\assets\models\Gun\M4A1.mtl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
-    </None>
     <None Include="src\assets\shaders\Camera.frag" />
     <None Include="src\assets\shaders\Camera.vert" />
     <None Include="src\assets\shaders\Model.frag" />
@@ -610,20 +606,12 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\assets\models\Gun\Tex_0004_1.jpg" />
-    <Image Include="src\assets\models\Gun\Tex_0006_1.jpg" />
-    <Image Include="src\assets\models\Gun\Tex_0006_3.jpg" />
-    <Image Include="src\assets\models\Gun\Tex_0012_1.jpg" />
-    <Image Include="src\assets\models\Gun\Tex_0012_3.jpg" />
+    <Image Include="src\assets\models\Gun\normal.jpg" />
     <Image Include="src\assets\textures\container.jpg" />
     <Image Include="src\assets\textures\floor.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Object Include="src\assets\models\Gun\acr.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </Object>
-    <Object Include="src\assets\models\Gun\M4A1.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </Object>

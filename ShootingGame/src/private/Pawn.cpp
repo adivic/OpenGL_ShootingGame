@@ -8,13 +8,13 @@ Pawn::Pawn(glm::vec3 position, glm::vec3 size, float playerSpeed)
 	fpsCamera = new CameraComponent(glm::vec3(0, baseEyeHeight, 0));
 	fpsCamera->speed = speed;
 	
-	
-	gunMesh = new Model("src/assets/models/Gun/acr.obj");
+	glm::vec3 gunLocation = fpsCamera->getWorldPosition() + glm::vec3(.2f, -.2f, 0.f);
+	weapon = new Weapon(gunLocation, FRotator(40.f, 95.f, 2.f));
 }
 
 Pawn::~Pawn() {
 	delete fpsCamera;
-	delete gunMesh;
+	delete weapon;
 }
 
 void Pawn::processMovement(EMovement direction, float deltaTime) {
@@ -28,33 +28,20 @@ void Pawn::mouseInput(float xoffset, float yoffset, bool bConstrainPitch) {
 	rotation = fpsCamera->rotation;
 }
 
-void Pawn::update(float deltaTime) {
-	//std::cout << "Position = " << position.x << ", " << position.y << ", " << position.z << "\n";
-	//std::cout << "Camera Pos = " << fpsCamera->getWorldPosition().x << ", " << fpsCamera->getWorldPosition().y << ", " << fpsCamera->getWorldPosition().z << "\n";
-}
+void Pawn::update(float deltaTime) { }
 
 void Pawn::render() {
-	Shader gunShader = ResourceManager::getShader("Gun");
-	gunShader.use();
-	glm::mat4 model = glm::mat4(1.f);
-	glm::vec3 offset = glm::vec3(-.2f, -1.1f, -2.f);
-	gunShader.setUnifromMat4f("view", glm::lookAt(fpsCamera->getWorldPosition(), fpsCamera->getWorldPosition() + offset, glm::vec3(0,1,0)));
+	weapon->render();
+	if (bSprinting)
+		weapon->setActorRotation(FRotator(60.f, 120.f, 10.f));
+	else 
+		weapon->setActorRotation(FRotator(40.f, 95.f, 2.f));
+}
 
-	model = glm::translate(model, fpsCamera->getWorldPosition() + glm::vec3(.2f, -.2f, 0.f));
-	model = glm::rotate(model, glm::radians(90.f), glm::vec3(0.f, 0.f, 1.f));
-	model = glm::rotate(model, glm::radians(180.f), glm::vec3(1.f, 0.f, 0.f));
-	model = glm::rotate(model, glm::radians(-185.f), glm::vec3(0.f, 1.f, 0));
-
-	model = glm::rotate(model, glm::radians(180.f), glm::vec3(1.f, 0.f, 0.f));
-	model = glm::rotate(model, glm::radians(90.f), glm::vec3(0.f, 0.f, 1.f));
-	model = glm::rotate(model, glm::radians(10.f), glm::vec3(0.f, 1.f, 0.f));
-
-	model = glm::rotate(model, glm::radians(20.f), glm::vec3(1.f, 0.f, 0.f));
-
-
-
-	model = glm::scale(model, glm::vec3(.6f));
-	gunShader.setUnifromMat4f("model", model);
-	gunMesh->Draw(gunShader);
-	
+void Pawn::sprint(bool bStart) {
+	bSprinting = bStart;
+	if (bStart)
+		speed = fpsCamera->speed = 7.f;
+	 else 
+		speed = fpsCamera->speed = SPEED;
 }

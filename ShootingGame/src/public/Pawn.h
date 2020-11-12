@@ -4,7 +4,6 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include "Components/CameraComponent.h"
-#include "Utility/Model.h"
 #include "Weapon.h"
 
 class Pawn {
@@ -26,8 +25,7 @@ protected:
 	// Speed of player
 	float speed;
 	FRotator rotation;
-
-	Model* gunMesh;
+	Weapon* weapon;
 
 public:
 	Pawn(glm::vec3 position, glm::vec3 size = glm::vec3(1.f, 2.f, 1.f), float playerSpeed = SPEED);
@@ -38,6 +36,8 @@ public:
 	void update(float deltaTime);
 	void render();
 
+	void sprint(bool bStart);
+
 	inline CameraComponent* getPlayerCamera() { return fpsCamera; }
 	inline FRotator getPlayerRotation() { return rotation; }
 	inline glm::vec3 getForwardVector() { return front; }
@@ -45,9 +45,10 @@ public:
 	inline glm::vec3 getSize() { return size; }
 	inline float getBaseEyeHeight() { return baseEyeHeight; }
 	inline float getMovementSpeed() { return speed; }
-	inline Model* getGunMesh() { return gunMesh; }
+	inline Weapon* getGunMesh() { return weapon; }
 
 	bool bAiming = false;
+	bool bSprinting = false;
 };
 
 #endif // !PAWN_H

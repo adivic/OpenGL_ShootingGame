@@ -14,6 +14,7 @@ void Game::init() {
 	ResourceManager::loadShader("src/assets/shaders/Model.vert", "src/assets/shaders/Model.frag", nullptr, "Gun");
 
 	ResourceManager::loadTexture("src/assets/textures/floor.jpg", false, "Floor");
+	ResourceManager::loadTexture("src/assets/models/normal.jpg", false, "Gun");
 	ResourceManager::loadTexture("src/assets/textures/container.jpg", false, "Box");
 
 	player = new Pawn(glm::vec3(0.f, 0.f, 0.f));
@@ -32,12 +33,26 @@ void Game::processInput(float deltaTime) {
 		player->processMovement(EMovement::BACKWARD, deltaTime);
 	if (buttons[GLFW_KEY_D]) 
 		player->processMovement(EMovement::RIGHT, deltaTime);
+	//Aiming
 	if (buttons[GLFW_MOUSE_BUTTON_RIGHT] && !buttonsPressed[GLFW_MOUSE_BUTTON_RIGHT]) {
 		player->bAiming = true;
 		buttonsPressed[GLFW_MOUSE_BUTTON_RIGHT] = true;
 	}
 	if (!buttons[GLFW_MOUSE_BUTTON_RIGHT] && !buttonsPressed[GLFW_MOUSE_BUTTON_RIGHT])
 		player->bAiming = false;
+	//Sprinting
+	if (buttons[GLFW_KEY_LEFT_SHIFT] && !buttonsPressed[GLFW_KEY_LEFT_SHIFT] && !player->bSprinting) {
+		player->sprint(true);
+		buttonsPressed[GLFW_KEY_LEFT_SHIFT] = true;
+	}
+	if (!buttons[GLFW_KEY_LEFT_SHIFT] && !buttonsPressed[GLFW_KEY_LEFT_SHIFT] && player->bSprinting)
+		player->sprint(false);
+	//Firing
+	if (buttons[GLFW_MOUSE_BUTTON_LEFT]) {
+		buttonsPressed[GLFW_MOUSE_BUTTON_LEFT] = true;
+	}
+	if (!buttons[GLFW_MOUSE_BUTTON_LEFT] && !buttonsPressed[GLFW_MOUSE_BUTTON_LEFT]) {}
+
 }
 
 void Game::update(float deltaTime) {

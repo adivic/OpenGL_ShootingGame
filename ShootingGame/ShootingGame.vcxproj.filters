@@ -1367,7 +1367,6 @@
     <None Include="src\assets\shaders\Camera.frag" />
     <None Include="src\assets\shaders\Texture.vert" />
     <None Include="src\assets\shaders\Texture.frag" />
-    <None Include="src\assets\models\Gun\M4A1.mtl" />
     <None Include="src\assets\shaders\Model.vert" />
     <None Include="src\assets\shaders\Model.frag" />
     <None Include="src\assets\models\Gun\acr.mtl" />
@@ -1379,24 +1378,11 @@
     <Image Include="src\assets\textures\container.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\assets\models\Gun\Tex_0004_1.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="src\assets\models\Gun\Tex_0006_1.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="src\assets\models\Gun\Tex_0006_3.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="src\assets\models\Gun\Tex_0012_1.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="src\assets\models\Gun\Tex_0012_3.jpg">
+    <Image Include="src\assets\models\Gun\normal.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="src\assets\models\Gun\M4A1.obj" />
     <Object Include="src\assets\models\Gun\acr.obj" />
   </ItemGroup>
 </Project>
