@@ -12,10 +12,12 @@ unsigned int VBO, VAO;
 void Game::init() {
 	ResourceManager::loadShader("src/assets/shaders/Texture.vert", "src/assets/shaders/Texture.frag", nullptr, "Texture");
 	ResourceManager::loadShader("src/assets/shaders/Model.vert", "src/assets/shaders/Model.frag", nullptr, "Gun");
+	ResourceManager::loadShader("src/assets/shaders/muzzleFlash.vert", "src/assets/shaders/muzzleFlash.frag", nullptr, "MuzzleFlash");
 
 	ResourceManager::loadTexture("src/assets/textures/floor.jpg", false, "Floor");
 	ResourceManager::loadTexture("src/assets/models/normal.jpg", false, "Gun");
 	ResourceManager::loadTexture("src/assets/textures/container.jpg", false, "Box");
+	ResourceManager::loadTexture("src/assets/textures/muzzleFlash.png", true, "MuzzzleFlash");
 
 	player = new Pawn(glm::vec3(0.f, 0.f, 0.f));
 	
@@ -48,10 +50,15 @@ void Game::processInput(float deltaTime) {
 	if (!buttons[GLFW_KEY_LEFT_SHIFT] && !buttonsPressed[GLFW_KEY_LEFT_SHIFT] && player->bSprinting)
 		player->sprint(false);
 	//Firing
-	if (buttons[GLFW_MOUSE_BUTTON_LEFT]) {
+	if (buttons[GLFW_MOUSE_BUTTON_LEFT] && !buttonsPressed[GLFW_MOUSE_BUTTON_LEFT]) { // semi fire
+		player->getWeapon()->fire();
 		buttonsPressed[GLFW_MOUSE_BUTTON_LEFT] = true;
 	}
-	if (!buttons[GLFW_MOUSE_BUTTON_LEFT] && !buttonsPressed[GLFW_MOUSE_BUTTON_LEFT]) {}
+	//reload
+	if (buttons[GLFW_KEY_R] && !buttonsPressed[GLFW_KEY_R]) {
+		player->getWeapon()->reload();
+		buttonsPressed[GLFW_KEY_R] = true;
+	}
 
 }
 
@@ -66,7 +73,7 @@ void Game::update(float deltaTime) {
 }
 
 void Game::render() {
-	glm::mat4 projection = glm::perspective(glm::radians(FOV), (float)(Width / Height), .1f, 100.f);
+	glm::mat4 projection = glm::perspective(glm::radians(FOV), (float)(Width / Height), .25f, 100.f);
 	ResourceManager::getShader("Gun").use().setUnifromMat4f("projection", projection);
 
 	level->render();

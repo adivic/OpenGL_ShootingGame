@@ -4,7 +4,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include "Shader.h"
-#include <Utility\Rotator.h>
+#include "Core/Rotator.h"
 
 
 class Actor {

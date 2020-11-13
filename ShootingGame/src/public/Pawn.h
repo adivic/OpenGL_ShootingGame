@@ -3,12 +3,16 @@
 #define PAWN_H
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <irrKlang.h>
 #include "Components/CameraComponent.h"
 #include "Weapon.h"
 
 class Pawn {
 
 private:
+	irrklang::ISoundEngine* soundEngine;
+
+	void playFootsteps();
 
 protected:
 	glm::vec3 position;
@@ -37,6 +41,7 @@ public:
 	void render();
 
 	void sprint(bool bStart);
+	void fire();
 
 	inline CameraComponent* getPlayerCamera() { return fpsCamera; }
 	inline FRotator getPlayerRotation() { return rotation; }
@@ -45,7 +50,7 @@ public:
 	inline glm::vec3 getSize() { return size; }
 	inline float getBaseEyeHeight() { return baseEyeHeight; }
 	inline float getMovementSpeed() { return speed; }
-	inline Weapon* getGunMesh() { return weapon; }
+	inline Weapon* getWeapon() { return weapon; }
 
 	bool bAiming = false;
 	bool bSprinting = false;

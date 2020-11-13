@@ -101,15 +101,18 @@ void Level::render() {
     glBindVertexArray(cubeVAO);
     glActiveTexture(GL_TEXTURE0);
     ResourceManager::getTexture("Box").bind();
-    model = glm::translate(model, glm::vec3(-1.0f, 0.001f, -1.0f));
+    model = glm::translate(model, glm::vec3(-3.0f, 1.f, -3.0f));
+    model = glm::scale(model, glm::vec3(3.f));
     shader.setUnifromMat4f("model", model);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(2.0f, 0.001f, 0.0f));
+    model = glm::translate(model, glm::vec3(3.0f, 1.f, 2.0f));
+    model = glm::scale(model, glm::vec3(3.f));
     shader.setUnifromMat4f("model", model);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(4.0f, 0.001f, -3.0f));
+    model = glm::translate(model, glm::vec3(5.0f, 1.f, -4.0f));
+    model = glm::scale(model, glm::vec3(3.f));
     shader.setUnifromMat4f("model", model);
     glDrawArrays(GL_TRIANGLES, 0, 36);
 

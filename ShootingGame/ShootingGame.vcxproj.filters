@@ -63,6 +63,9 @@
     <ClCompile Include="src\private\Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\private\Components\ParticleEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\public\Game.h">
@@ -947,10 +950,16 @@
     <ClInclude Include="src\public\Components\Actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\public\Utility\Rotator.h">
+    <ClInclude Include="src\public\Weapon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\public\Weapon.h">
+    <ClInclude Include="src\public\Core\Particle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Core\Rotator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\public\Components\ParticleEmitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1370,6 +1379,10 @@
     <None Include="src\assets\shaders\Model.vert" />
     <None Include="src\assets\shaders\Model.frag" />
     <None Include="src\assets\models\Gun\acr.mtl" />
+    <None Include="src\assets\shaders\Particle.vert" />
+    <None Include="src\assets\shaders\Particle.frag" />
+    <None Include="src\assets\shaders\muzzleFlash.frag" />
+    <None Include="src\assets\shaders\muzzleFlash.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\assets\textures\floor.jpg">
@@ -1381,8 +1394,28 @@
     <Image Include="src\assets\models\Gun\normal.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="src\assets\textures\muzzleFlash.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Object Include="src\assets\models\Gun\acr.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="src\assets\audio\ambient.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="src\assets\audio\gun.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="src\assets\audio\reload.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="src\assets\audio\Footstep01.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="src\assets\audio\Footstep02.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

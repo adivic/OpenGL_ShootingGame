@@ -4,7 +4,7 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <Utility\Rotator.h>
+#include "Core/Rotator.h"
 
 constexpr float YAW = -90.f;
 constexpr float PITCH = 0.f;
@@ -32,7 +32,6 @@ public:
 
 	CameraComponent(glm::vec3 position = glm::vec3(0.f,0.f,0.f), glm::vec3 up = glm::vec3(0.f, 1.f, 0.f), FRotator rot = FRotator(YAW, PITCH, 0.f));
 	CameraComponent(float posX, float posY, float posZ, float upX, float upY, float upZ, FRotator rot);
-
 
 	inline glm::vec3 getWorldPosition() { return position; }
 	inline glm::vec3 getForwardVector() { return front; }
