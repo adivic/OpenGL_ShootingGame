@@ -10,7 +10,7 @@
 class Pawn {
 
 private:
-	irrklang::ISoundEngine* soundEngine;
+	//irrklang::ISoundEngine* soundEngine;
 
 	void playFootsteps();
 

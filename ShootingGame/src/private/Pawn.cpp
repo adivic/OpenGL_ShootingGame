@@ -4,12 +4,12 @@
 #include <stb_image/stb_image.h>
 
 void Pawn::playFootsteps() {
-	if (!soundEngine->isCurrentlyPlaying("src/assets/audio/Footstep01.wav")) {
-		 soundEngine->play3D("src/assets/audio/Footstep01.wav", irrklang::vec3df(0, 0, 0));
-	}
-	if (!soundEngine->isCurrentlyPlaying("src/assets/audio/Footstep02.wav")) {
-		soundEngine->play3D("src/assets/audio/Footstep02.wav", irrklang::vec3df(0, 0, 0));
-	}
+	//if (!soundEngine->isCurrentlyPlaying("src/assets/audio/Footstep01.wav")) {
+	//	 soundEngine->play3D("src/assets/audio/Footstep01.wav", irrklang::vec3df(0, 0, 0));
+	//}
+	//if (!soundEngine->isCurrentlyPlaying("src/assets/audio/Footstep02.wav")) {
+	//	soundEngine->play3D("src/assets/audio/Footstep02.wav", irrklang::vec3df(0, 0, 0));
+	//}
 }
 
 Pawn::Pawn(glm::vec3 position, glm::vec3 size, float playerSpeed)
@@ -21,13 +21,13 @@ Pawn::Pawn(glm::vec3 position, glm::vec3 size, float playerSpeed)
 	glm::vec3 gunLocation = fpsCamera->getWorldPosition() + glm::vec3(.2f, -.2f, 0.f);
 	weapon = new Weapon(gunLocation, FRotator(40.f, 95.f, 2.f));
 
-	soundEngine = irrklang::createIrrKlangDevice();
+	//soundEngine = irrklang::createIrrKlangDevice();
 }
 
 Pawn::~Pawn() {
 	delete fpsCamera;
 	delete weapon;
-	delete soundEngine;
+	//delete soundEngine;
 }
 
 void Pawn::processMovement(EMovement direction, float deltaTime) {

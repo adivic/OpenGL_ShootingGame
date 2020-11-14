@@ -29,14 +29,25 @@ void Weapon::init() {
 	weaponInfo.fullMag = 31;
 	weaponInfo.maxAmmo = 125;
 	weaponInfo.damage = 15.f;
-	weaponInfo.fireRate = .2f;
+	weaponInfo.fireRate = .1f;
+
+	prepareMuzzleFlash();
 }
 
-void Weapon::update(float deltaTime) {}
+void Weapon::update(float deltaTime) {
+	//Check if player holding fire button to hide the muzzle flash 
+	if (glfwGetTime() > canFire && bFiring)
+		bFiring = false;
+}
 
 void Weapon::render() {
 	Shader gunShader = ResourceManager::getShader("Gun");
 	gunShader.use();
+	shader.setUniform1i("texture_diffuse1", 0);
+	glActiveTexture(GL_TEXTURE0);
+	Texture tex = ResourceManager::getTexture("Gun");
+	tex.bind();
+
 	// Look at matrix: (camera_position, object_position, world_Up)
 	glm::mat4 view = glm::lookAt(position - glm::vec3(.2f, -.2f, 0.f), position, glm::vec3(0, 1, 0));
 	gunShader.setUnifromMat4f("view", view);
@@ -51,6 +62,7 @@ void Weapon::render() {
 	model = glm::scale(model, glm::vec3(.6f));
 	gunShader.setUnifromMat4f("model", model);
 	weaponMesh->Draw(gunShader);
+	showMuzzleFlash();
 }
 
 void Weapon::reload() {
@@ -81,6 +93,7 @@ bool Weapon::fire() {
 	if (weaponInfo.ammo <= 0) return false;
 	if (glfwGetTime() > canFire) {
 		weaponInfo.ammo--;
+		bFiring = true;
 		std::cout << "Fire() -> " << weaponInfo.ammo << " bullets left\n";
 		irrklang::vec3df pos = irrklang::vec3df(position.x, position.y, position.z);
 		soundEngine->play3D("src/assets/audio/gun.wav", pos);
@@ -89,7 +102,7 @@ bool Weapon::fire() {
 	canFire = glfwGetTime() + weaponInfo.fireRate;
 	return true;
 }
-
+unsigned int muzzleVAO;
 void Weapon::prepareMuzzleFlash() {
 	float quad[] = {
 		 -1.0f,  1.0f,  0.0f, 1.0f,
@@ -100,7 +113,7 @@ void Weapon::prepareMuzzleFlash() {
 		  1.0f, -1.0f,  1.0f, 0.0f,
 		  1.0f,  1.0f,  1.0f, 1.0f
 	};
-	unsigned int muzzleVBO, muzzleVAO;
+	unsigned int muzzleVBO;
 	glGenVertexArrays(1, &muzzleVAO);
 	glGenBuffers(1, &muzzleVBO);
 	glBindVertexArray(muzzleVAO);
@@ -111,16 +124,33 @@ void Weapon::prepareMuzzleFlash() {
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));	
-
-	Shader shader = ResourceManager::getShader("MuzzleFlash");
-	Texture texture = ResourceManager::getTexture("MuzzleFlash");
-
-	shader.use();
-	shader.setUniform1i("texture1", 0);
-	glActiveTexture(GL_TEXTURE0);
-	texture.bind();
+	glBindVertexArray(0);
 }
 
 void Weapon::showMuzzleFlash() {
+	Shader shader = ResourceManager::getShader("MuzzleFlash");
+	glBindVertexArray(muzzleVAO);
+	shader.use();
+	shader.setUniform1i("muzzleFlash", 0);
+	shader.setUniform1i("bShow", bFiring);
+	glActiveTexture(GL_TEXTURE0);
+	Texture tex = ResourceManager::getTexture("MuzzzleFlash");
+	tex.bind();
+	glm::mat4 view = glm::lookAt(position - glm::vec3(.2f, .2f, 1.f), position, glm::vec3(0, 1, 0));
+	shader.setUnifromMat4f("view", view);
+	glm::mat4 model = glm::mat4(1.f);
+	model = glm::translate(model, position + glm::vec3(-.01f, .1f, .5f));
+	model = glm::rotate(model, glm::radians(90.f), glm::vec3(0,1,0));
+	model = glm::scale(model, glm::vec3(.2f));
+	shader.setUnifromMat4f("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	model = glm::mat4(1.f);
+	model = glm::translate(model, position + glm::vec3(-.01f, .1f, .5f));
+	model = glm::rotate(model, glm::radians(90.f), glm::vec3(0, 0, 1));
+	model = glm::scale(model, glm::vec3(.2f));
+	shader.setUnifromMat4f("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(0);
 
 }

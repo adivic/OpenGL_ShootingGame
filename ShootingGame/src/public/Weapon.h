@@ -37,6 +37,7 @@ protected:
 	FWeaponInfo weaponInfo;
 
 private:
+	bool bFiring = false;
 	float canFire = 0;
 	irrklang::ISoundEngine* soundEngine;
 	void prepareMuzzleFlash();

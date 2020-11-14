@@ -15,7 +15,7 @@ void Game::init() {
 	ResourceManager::loadShader("src/assets/shaders/muzzleFlash.vert", "src/assets/shaders/muzzleFlash.frag", nullptr, "MuzzleFlash");
 
 	ResourceManager::loadTexture("src/assets/textures/floor.jpg", false, "Floor");
-	ResourceManager::loadTexture("src/assets/models/normal.jpg", false, "Gun");
+	ResourceManager::loadTexture("src/assets/models/Gun/normal.jpg", false, "Gun");
 	ResourceManager::loadTexture("src/assets/textures/container.jpg", false, "Box");
 	ResourceManager::loadTexture("src/assets/textures/muzzleFlash.png", true, "MuzzzleFlash");
 
@@ -23,7 +23,6 @@ void Game::init() {
 	
 	level = new Level(Width, Height, player);
 	level->init();
-	
 }
 
 void Game::processInput(float deltaTime) {
@@ -75,6 +74,7 @@ void Game::update(float deltaTime) {
 void Game::render() {
 	glm::mat4 projection = glm::perspective(glm::radians(FOV), (float)(Width / Height), .25f, 100.f);
 	ResourceManager::getShader("Gun").use().setUnifromMat4f("projection", projection);
+	ResourceManager::getShader("MuzzleFlash").use().setUnifromMat4f("projection", projection);
 
 	level->render();
 	player->render();
