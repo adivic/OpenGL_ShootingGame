@@ -43,17 +43,22 @@ public:
 	void sprint(bool bStart);
 	void fire();
 
-	inline CameraComponent* getPlayerCamera() { return fpsCamera; }
-	inline FRotator getPlayerRotation() { return rotation; }
-	inline glm::vec3 getForwardVector() { return front; }
-	inline glm::vec3 getPosition() { return position; }
-	inline glm::vec3 getSize() { return size; }
-	inline float getBaseEyeHeight() { return baseEyeHeight; }
-	inline float getMovementSpeed() { return speed; }
-	inline Weapon* getWeapon() { return weapon; }
+	inline CameraComponent* getPlayerCamera() const { return fpsCamera; }
+	inline FRotator getPlayerRotation() const { return rotation; }
+	inline glm::vec3 getForwardVector() const { return front; }
+	inline glm::vec3 getPosition() const { return position; }
+	inline glm::vec3 getSize() const { return size; }
+	inline float getBaseEyeHeight() const { return baseEyeHeight; }
+	inline float getMovementSpeed() const { return speed; }
+	inline Weapon* getWeapon() const { return weapon; }
+
+	inline void setPosition(const glm::vec3 pos) { position = pos; }
+
 
 	bool bAiming = false;
 	bool bSprinting = false;
+	bool bJumping = false;
+	bool bCanJump = true;
 };
 
 #endif // !PAWN_H

@@ -66,6 +66,9 @@
     <ClCompile Include="src\private\Components\ParticleEmitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\private\Components\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\public\Game.h">
@@ -962,6 +965,9 @@
     <ClInclude Include="src\public\Components\ParticleEmitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\public\Components\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\glm\detail\func_common.inl">
@@ -1383,6 +1389,8 @@
     <None Include="src\assets\shaders\Particle.frag" />
     <None Include="src\assets\shaders\muzzleFlash.frag" />
     <None Include="src\assets\shaders\muzzleFlash.vert" />
+    <None Include="src\assets\shaders\screenTexture.frag" />
+    <None Include="src\assets\shaders\screenTexture.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\assets\textures\floor.jpg">

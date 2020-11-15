@@ -1,3 +1,2 @@
-﻿  Weapon.cpp
-C:\Users\Antonio\source\repos\ShootingGame\ShootingGame\src\private\Weapon.cpp(102,26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  Game.cpp
   ShootingGame.vcxproj -> C:\Users\Antonio\source\repos\ShootingGame\Debug\ShootingGame.exe

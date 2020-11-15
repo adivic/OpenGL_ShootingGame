@@ -149,6 +149,7 @@
     <ClCompile Include="src\private\Components\Actor.cpp" />
     <ClCompile Include="src\private\Components\CameraComponent.cpp" />
     <ClCompile Include="src\private\Components\ParticleEmitter.cpp" />
+    <ClCompile Include="src\private\Components\Renderer.cpp" />
     <ClCompile Include="src\private\Game.cpp" />
     <ClCompile Include="src\private\Level.cpp" />
     <ClCompile Include="src\private\Pawn.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="src\public\Components\Actor.h" />
     <ClInclude Include="src\public\Components\CameraComponent.h" />
     <ClInclude Include="src\public\Components\ParticleEmitter.h" />
+    <ClInclude Include="src\public\Components\Renderer.h" />
     <ClInclude Include="src\public\Core\Particle.h" />
     <ClInclude Include="src\public\Game.h" />
     <ClInclude Include="src\public\Level.h" />
@@ -473,6 +475,8 @@
     <None Include="src\assets\shaders\muzzleFlash.vert" />
     <None Include="src\assets\shaders\Particle.frag" />
     <None Include="src\assets\shaders\Particle.vert" />
+    <None Include="src\assets\shaders\screenTexture.frag" />
+    <None Include="src\assets\shaders\screenTexture.vert" />
     <None Include="src\assets\shaders\Texture.frag" />
     <None Include="src\assets\shaders\Texture.vert" />
     <None Include="src\vendor\glm\detail\func_common.inl" />

@@ -30,5 +30,6 @@ public:
 
 private:
 	class Level* level;
+	class Renderer* renderer;
 };
 #endif // !GAME_H

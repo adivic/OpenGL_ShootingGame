@@ -24,6 +24,8 @@ void Weapon::init() {
 	stbi_set_flip_vertically_on_load(true);
 	weaponMesh = new Model("src/assets/models/Gun/acr.obj");
 
+	muzzleOffset = glm::vec3(.015f, .1f, .5f);
+
 	//fill weaponInfo 
 	weaponInfo.ammo = 31;
 	weaponInfo.fullMag = 31;
@@ -62,7 +64,7 @@ void Weapon::render() {
 	model = glm::scale(model, glm::vec3(.6f));
 	gunShader.setUnifromMat4f("model", model);
 	weaponMesh->Draw(gunShader);
-	showMuzzleFlash();
+	drawMuzzleFlash();
 }
 
 void Weapon::reload() {
@@ -97,12 +99,12 @@ bool Weapon::fire() {
 		std::cout << "Fire() -> " << weaponInfo.ammo << " bullets left\n";
 		irrklang::vec3df pos = irrklang::vec3df(position.x, position.y, position.z);
 		soundEngine->play3D("src/assets/audio/gun.wav", pos);
-		std::cout << "\nTime: " << glfwGetTime() << "\n";
+		std::cout << "\nTime: " << glfwGetTime() << " CanFire = " << canFire << "\n";
 	}
 	canFire = glfwGetTime() + weaponInfo.fireRate;
 	return true;
 }
-unsigned int muzzleVAO;
+
 void Weapon::prepareMuzzleFlash() {
 	float quad[] = {
 		 -1.0f,  1.0f,  0.0f, 1.0f,
@@ -127,7 +129,7 @@ void Weapon::prepareMuzzleFlash() {
 	glBindVertexArray(0);
 }
 
-void Weapon::showMuzzleFlash() {
+void Weapon::drawMuzzleFlash() {
 	Shader shader = ResourceManager::getShader("MuzzleFlash");
 	glBindVertexArray(muzzleVAO);
 	shader.use();
@@ -139,18 +141,15 @@ void Weapon::showMuzzleFlash() {
 	glm::mat4 view = glm::lookAt(position - glm::vec3(.2f, .2f, 1.f), position, glm::vec3(0, 1, 0));
 	shader.setUnifromMat4f("view", view);
 	glm::mat4 model = glm::mat4(1.f);
-	model = glm::translate(model, position + glm::vec3(-.01f, .1f, .5f));
-	model = glm::rotate(model, glm::radians(90.f), glm::vec3(0,1,0));
-	model = glm::scale(model, glm::vec3(.2f));
+	model = glm::translate(model, position + muzzleOffset);
+	model = glm::scale(model, glm::vec3(.1f,.2f,.2f));
+	model = glm::rotate(model, glm::radians(70.f), glm::vec3(0, 1, 0));
 	shader.setUnifromMat4f("model", model);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-
 	model = glm::mat4(1.f);
-	model = glm::translate(model, position + glm::vec3(-.01f, .1f, .5f));
-	model = glm::rotate(model, glm::radians(90.f), glm::vec3(0, 0, 1));
-	model = glm::scale(model, glm::vec3(.2f));
+	model = glm::translate(model, position + muzzleOffset);
+	model = glm::scale(model, glm::vec3(.1f, .2f, .2f));
 	shader.setUnifromMat4f("model", model);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glBindVertexArray(0);
-
 }

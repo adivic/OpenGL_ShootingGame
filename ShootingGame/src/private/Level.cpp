@@ -125,5 +125,4 @@ void Level::render() {
     shader.setUnifromMat4f("model", model);
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
-    
 }

@@ -35,13 +35,17 @@ public:
 protected:
 	Model* weaponMesh;
 	FWeaponInfo weaponInfo;
+	irrklang::ISoundEngine* soundEngine;
 
 private:
 	bool bFiring = false;
 	float canFire = 0;
-	irrklang::ISoundEngine* soundEngine;
+	glm::vec3 muzzleOffset;
+
+	unsigned int muzzleVAO;
+
 	void prepareMuzzleFlash();
-	void showMuzzleFlash();
+	void drawMuzzleFlash();
 };
 
 #endif // !WEAPON_H

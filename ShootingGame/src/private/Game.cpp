@@ -1,23 +1,29 @@
 #include "Game.h"
 #include "Level.h"
 #include "Utility/Math.h"
+#include "Components/Renderer.h"
 
 Game::Game(unsigned int width, unsigned int height) : Width(width), Height(height), buttons() { }
 
 Game::~Game() {
 	delete player;
 	delete level;
+	delete renderer;
 }
 unsigned int VBO, VAO;
 void Game::init() {
 	ResourceManager::loadShader("src/assets/shaders/Texture.vert", "src/assets/shaders/Texture.frag", nullptr, "Texture");
 	ResourceManager::loadShader("src/assets/shaders/Model.vert", "src/assets/shaders/Model.frag", nullptr, "Gun");
 	ResourceManager::loadShader("src/assets/shaders/muzzleFlash.vert", "src/assets/shaders/muzzleFlash.frag", nullptr, "MuzzleFlash");
+	ResourceManager::loadShader("src/assets/shaders/screenTexture.vert", "src/assets/shaders/screenTexture.frag", nullptr, "ScreenTexture");
 
 	ResourceManager::loadTexture("src/assets/textures/floor.jpg", false, "Floor");
 	ResourceManager::loadTexture("src/assets/models/Gun/normal.jpg", false, "Gun");
 	ResourceManager::loadTexture("src/assets/textures/container.jpg", false, "Box");
 	ResourceManager::loadTexture("src/assets/textures/muzzleFlash.png", true, "MuzzzleFlash");
+
+	renderer = new Renderer(Width, Height);
+	renderer->init();
 
 	player = new Pawn(glm::vec3(0.f, 0.f, 0.f));
 	
@@ -39,18 +45,20 @@ void Game::processInput(float deltaTime) {
 		player->bAiming = true;
 		buttonsPressed[GLFW_MOUSE_BUTTON_RIGHT] = true;
 	}
+	// Stop aiming
 	if (!buttons[GLFW_MOUSE_BUTTON_RIGHT] && !buttonsPressed[GLFW_MOUSE_BUTTON_RIGHT])
 		player->bAiming = false;
 	//Sprinting
 	if (buttons[GLFW_KEY_LEFT_SHIFT] && !buttonsPressed[GLFW_KEY_LEFT_SHIFT] && !player->bSprinting) {
 		player->sprint(true);
 		buttonsPressed[GLFW_KEY_LEFT_SHIFT] = true;
-	}
+	} 
+	// Sprint stop
 	if (!buttons[GLFW_KEY_LEFT_SHIFT] && !buttonsPressed[GLFW_KEY_LEFT_SHIFT] && player->bSprinting)
 		player->sprint(false);
 	//Firing
-	if (buttons[GLFW_MOUSE_BUTTON_LEFT] && !buttonsPressed[GLFW_MOUSE_BUTTON_LEFT]) { // semi fire
-		player->getWeapon()->fire();
+	if (buttons[GLFW_MOUSE_BUTTON_LEFT] && !buttonsPressed[GLFW_MOUSE_BUTTON_LEFT] && !player->bSprinting) { // semi fire
+		player->fire();
 		buttonsPressed[GLFW_MOUSE_BUTTON_LEFT] = true;
 	}
 	//reload
@@ -58,7 +66,15 @@ void Game::processInput(float deltaTime) {
 		player->getWeapon()->reload();
 		buttonsPressed[GLFW_KEY_R] = true;
 	}
-
+	// jumping
+	if (buttons[GLFW_KEY_SPACE] && !buttonsPressed[GLFW_KEY_SPACE] && player->bCanJump) {
+		player->processMovement(EMovement::UP, deltaTime);
+		player->bCanJump = false;
+		player->bJumping = true;
+		buttonsPressed[GLFW_KEY_SPACE] = true;
+	}
+	if (buttons[GLFW_KEY_SPACE] && buttonsPressed[GLFW_KEY_SPACE] )
+		player->bCanJump = true;
 }
 
 void Game::update(float deltaTime) {
@@ -72,10 +88,14 @@ void Game::update(float deltaTime) {
 }
 
 void Game::render() {
+	renderer->renderBegin();
+
 	glm::mat4 projection = glm::perspective(glm::radians(FOV), (float)(Width / Height), .25f, 100.f);
 	ResourceManager::getShader("Gun").use().setUnifromMat4f("projection", projection);
 	ResourceManager::getShader("MuzzleFlash").use().setUnifromMat4f("projection", projection);
 
 	level->render();
 	player->render();
+
+	renderer->renderEnd();
 }
