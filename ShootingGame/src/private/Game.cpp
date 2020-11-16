@@ -22,10 +22,10 @@ void Game::init() {
 	ResourceManager::loadTexture("src/assets/textures/container.jpg", false, "Box");
 	ResourceManager::loadTexture("src/assets/textures/muzzleFlash.png", true, "MuzzzleFlash");
 
-	renderer = new Renderer(Width, Height);
-	renderer->init();
-
 	player = new Pawn(glm::vec3(0.f, 0.f, 0.f));
+
+	renderer = new Renderer(Width, Height, player);
+	renderer->init();
 	
 	level = new Level(Width, Height, player);
 	level->init();
@@ -67,14 +67,14 @@ void Game::processInput(float deltaTime) {
 		buttonsPressed[GLFW_KEY_R] = true;
 	}
 	// jumping
-	if (buttons[GLFW_KEY_SPACE] && !buttonsPressed[GLFW_KEY_SPACE] && player->bCanJump) {
-		player->processMovement(EMovement::UP, deltaTime);
-		player->bCanJump = false;
-		player->bJumping = true;
-		buttonsPressed[GLFW_KEY_SPACE] = true;
-	}
-	if (buttons[GLFW_KEY_SPACE] && buttonsPressed[GLFW_KEY_SPACE] )
-		player->bCanJump = true;
+	//if (buttons[GLFW_KEY_SPACE] && !buttonsPressed[GLFW_KEY_SPACE] && player->bCanJump) {
+	//	player->processMovement(EMovement::UP, deltaTime);
+	//	player->bCanJump = false;
+	//	player->bJumping = true;
+	//	buttonsPressed[GLFW_KEY_SPACE] = true;
+	//}
+	//if (buttons[GLFW_KEY_SPACE] && buttonsPressed[GLFW_KEY_SPACE] )
+	//	player->bCanJump = true;
 }
 
 void Game::update(float deltaTime) {

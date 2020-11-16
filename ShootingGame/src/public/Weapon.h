@@ -31,6 +31,7 @@ public:
 
 	/* Getters */
 	inline FWeaponInfo getWeaponInfo() { return weaponInfo; }
+	inline bool isFiring() { return bFiring; }
 
 protected:
 	Model* weaponMesh;

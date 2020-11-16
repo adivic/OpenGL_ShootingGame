@@ -45,16 +45,16 @@ void Pawn::mouseInput(float xoffset, float yoffset, bool bConstrainPitch) {
 
 void Pawn::update(float deltaTime) { 
 	weapon->update(deltaTime); 
-	if (position.y < 0) {
-		position.y = 0;
-		fpsCamera->setPosition(position + glm::vec3(0, baseEyeHeight, 0));
-	}
-	if (bJumping || position.y > 0) {
-		position.y -= 8.f * deltaTime;
-		fpsCamera->setPosition(position + glm::vec3(0, baseEyeHeight, 0));
-		bJumping = false;
-		bCanJump = true;
-	}
+	//if (position.y < 0) {
+	//	position.y = 0;
+	//	fpsCamera->setPosition(position + glm::vec3(0, baseEyeHeight, 0));
+	//}
+	//if (bJumping || position.y > 0) {
+	//	position.y -= 8.f * deltaTime;
+	//	fpsCamera->setPosition(position + glm::vec3(0, baseEyeHeight, 0));
+	//	bJumping = false;
+	//	bCanJump = true;
+	//}
 }
 
 void Pawn::render() {
@@ -73,7 +73,6 @@ void Pawn::sprint(bool bStart) {
 		speed = fpsCamera->speed = SPEED;
 }
 
-/* TODO Camera Shake */
 void Pawn::fire() {
 	weapon->fire();
 }

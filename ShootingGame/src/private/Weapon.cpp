@@ -93,7 +93,7 @@ void Weapon::reload() {
 
 bool Weapon::fire() {
 	if (weaponInfo.ammo <= 0) return false;
-	if (glfwGetTime() > canFire) {
+	if (glfwGetTime() > canFire && !soundEngine->isCurrentlyPlaying("src/assets/audio/reload.wav")) {
 		weaponInfo.ammo--;
 		bFiring = true;
 		std::cout << "Fire() -> " << weaponInfo.ammo << " bullets left\n";

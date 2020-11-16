@@ -29,7 +29,7 @@ CameraComponent::CameraComponent(float posX, float posY, float posZ, float upX, 
 }
 
 void CameraComponent::processMovement(EMovement direction, float deltaTime, float offset) {
-	const float jumpForce = 90.f;
+	//const float jumpForce = 90.f;
 	float velocity = speed * deltaTime;
 	switch (direction) {
 		case EMovement::FORWARD:
@@ -44,13 +44,13 @@ void CameraComponent::processMovement(EMovement direction, float deltaTime, floa
 		case EMovement::RIGHT:
 			position += right * velocity;
 			break;
-		case EMovement::UP:
-			velocity *= jumpForce;
-			position += up * velocity;
-			break;
+		//case EMovement::UP:
+		//	velocity *= jumpForce;
+		//	position += up * velocity;
+		//	break;
 	}
 	//if(direction != EMovement::UP)
-	//	position.y = offset;
+		position.y = offset;
 }
 
 void CameraComponent::processLook(float xoffset, float yoffset, bool bConstrainPitch) {

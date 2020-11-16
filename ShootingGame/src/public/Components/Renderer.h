@@ -9,12 +9,13 @@ class Renderer {
 private:
 	unsigned int RBO, quadVAO;
 	unsigned int Width, Height;
+	class Pawn* player;
 
 public:
 	unsigned int FBO, textureID;
 
-	Renderer(unsigned int width, unsigned int height);
-	~Renderer() {}
+	Renderer(unsigned int width, unsigned int height, Pawn* pawn);
+	~Renderer();
 
 	void init();
 	void update();
