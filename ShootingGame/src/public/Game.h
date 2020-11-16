@@ -17,6 +17,7 @@ public:
 	unsigned int Width, Height;
 	bool buttons[1024];
 	bool buttonsPressed[1024];
+	static glm::mat4 defaultProjection;
 
 	Game(unsigned int width, unsigned int height);
 	~Game();

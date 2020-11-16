@@ -154,6 +154,7 @@
     <ClCompile Include="src\private\Level.cpp" />
     <ClCompile Include="src\private\Pawn.cpp" />
     <ClCompile Include="src\private\ResourceManager.cpp" />
+    <ClCompile Include="src\private\Scene\House.cpp" />
     <ClCompile Include="src\private\Shader.cpp" />
     <ClCompile Include="src\private\Texture.cpp" />
     <ClCompile Include="src\private\Utility\Math.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="src\public\Level.h" />
     <ClInclude Include="src\public\Pawn.h" />
     <ClInclude Include="src\public\ResourceManager.h" />
+    <ClInclude Include="src\public\Scene\House.h" />
     <ClInclude Include="src\public\Shader.h" />
     <ClInclude Include="src\public\Texture.h" />
     <ClInclude Include="src\public\Utility\Math.h" />

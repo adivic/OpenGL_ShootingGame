@@ -3,6 +3,8 @@
 #include "Utility/Math.h"
 #include "Components/Renderer.h"
 
+glm::mat4 Game::defaultProjection = glm::mat4(1.f);
+
 Game::Game(unsigned int width, unsigned int height) : Width(width), Height(height), buttons() { }
 
 Game::~Game() {
@@ -90,9 +92,9 @@ void Game::update(float deltaTime) {
 void Game::render() {
 	renderer->renderBegin();
 
-	glm::mat4 projection = glm::perspective(glm::radians(FOV), (float)(Width / Height), .25f, 100.f);
-	ResourceManager::getShader("Gun").use().setUnifromMat4f("projection", projection);
-	ResourceManager::getShader("MuzzleFlash").use().setUnifromMat4f("projection", projection);
+	defaultProjection = glm::perspective(glm::radians(FOV), (float)(Width / Height), .25f, 100.f);
+	ResourceManager::getShader("Gun").use().setUnifromMat4f("projection", defaultProjection);
+	ResourceManager::getShader("MuzzleFlash").use().setUnifromMat4f("projection", defaultProjection);
 
 	level->render();
 	player->render();
