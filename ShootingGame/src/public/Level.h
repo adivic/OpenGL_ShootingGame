@@ -7,6 +7,7 @@
 #include <vector>
 #include <memory>
 #include "Scene/House.h"
+#include "Scene/Floor.h"
 
 class Level {
 public:
@@ -16,12 +17,12 @@ public:
 	void render();
 
 private:
-	unsigned int floorVAO, cubeVAO;
+	//unsigned int floorVAO, cubeVAO;
 
 	Pawn* player;
 	unsigned int Width, Height;
 	std::vector<std::unique_ptr<House>> houses;
-
+	std::unique_ptr<Floor> floor;
 };
 
 #endif // !LEVEL_H

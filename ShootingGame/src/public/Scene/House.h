@@ -1,6 +1,4 @@
 #pragma once
-#ifndef HOUSE_H
-#define HOUSE_H
 
 #include "Components/Actor.h"
 #include <Texture.h>
@@ -19,9 +17,6 @@ public:
 	~House();
 
 	virtual void init() override;
-	virtual void update(float deltaTime) override;
 	virtual void render() override;
 
 };
-
-#endif // !HOUSE_H

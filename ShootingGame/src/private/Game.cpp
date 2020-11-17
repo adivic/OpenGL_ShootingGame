@@ -24,8 +24,9 @@ void Game::init() {
 	ResourceManager::loadTexture("src/assets/textures/container.jpg", false, "Box");
 	ResourceManager::loadTexture("src/assets/textures/muzzleFlash.png", true, "MuzzzleFlash");
 
+	/* Initialize actors */
 	player = new Pawn(glm::vec3(0.f, 0.f, 0.f));
-
+	
 	renderer = new Renderer(Width, Height, player);
 	renderer->init();
 	

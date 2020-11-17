@@ -30,6 +30,7 @@ public:
 	Pawn* player;
 
 private:
+	unsigned int uboMatrices;
 	class Level* level;
 	class Renderer* renderer;
 };

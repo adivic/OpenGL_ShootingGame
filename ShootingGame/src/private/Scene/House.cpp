@@ -82,8 +82,6 @@ void House::init() {
     glBindVertexArray(0);
 }
 
-void House::update(float deltaTime) {}
-
 // TODO set shader uniform buffers
 void House::render() {
 
