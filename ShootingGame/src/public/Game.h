@@ -4,8 +4,8 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
 #include <glm/glm.hpp>
+#include <memory>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Pawn.h"
 #include "ResourceManager.h"
@@ -32,6 +32,7 @@ public:
 private:
 	unsigned int uboMatrices;
 	class Level* level;
+	class SkyBox* skybox;
 	class Renderer* renderer;
 };
 #endif // !GAME_H

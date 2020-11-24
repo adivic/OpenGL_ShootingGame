@@ -5,8 +5,11 @@ layout (location = 1) in vec2 aTexCoords;
 out vec2 TexCoords;
 out vec4 ParticleColor;
 
-uniform mat4 projection;
-uniform mat4 view;
+layout (std140) uniform Matrices {
+    mat4 projection;
+    mat4 view;
+};
+
 uniform vec2 offset;
 uniform vec4 color;
 

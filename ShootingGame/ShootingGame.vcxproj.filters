@@ -75,6 +75,9 @@
     <ClCompile Include="src\private\Scene\Floor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\private\Scene\Skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\public\Game.h">
@@ -980,6 +983,9 @@
     <ClInclude Include="src\public\Scene\Floor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\public\Scene\Skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\vendor\glm\detail\func_common.inl">
@@ -1403,6 +1409,8 @@
     <None Include="src\assets\shaders\muzzleFlash.vert" />
     <None Include="src\assets\shaders\screenTexture.frag" />
     <None Include="src\assets\shaders\screenTexture.vert" />
+    <None Include="src\assets\shaders\skybox.vert" />
+    <None Include="src\assets\shaders\skybox.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\assets\textures\floor.jpg">
@@ -1415,6 +1423,24 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="src\assets\textures\muzzleFlash.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\skybox\back.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\skybox\bottom.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\skybox\front.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\skybox\left.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\skybox\right.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\assets\skybox\top.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

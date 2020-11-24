@@ -22,24 +22,22 @@ void Level::init() {
     }
 
     floor = std::make_unique<Floor>(Floor(glm::vec3(0), FRotator(0), glm::vec3(10.f, 1.f, 10.f)));
+   
 
     for (unsigned int i = 0; i < houses.size(); i++)
         houses[i]->init();
-    
+
     floor->init();
 }
 
 void Level::render() {
     Shader shader = ResourceManager::getShader("Texture");
     shader.use();
+
     glm::mat4 model = glm::mat4(1.0f);
-    glm::mat4 projection = glm::perspective(glm::radians(player->getPlayerCamera()->fov), (float)Width / (float)Height, 0.1f, 100.f);
-    shader.setUnifromMat4f("view", player->getPlayerCamera()->getViewMatrix());
-    shader.setUnifromMat4f("projection", projection);
    
     for (unsigned int i = 0; i < houses.size(); i++)
         houses[i]->render();
     
     floor->render();
-
 }

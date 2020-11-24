@@ -1,4 +1,3 @@
-﻿  Game.cpp
-  Level.cpp
-  Generating Code...
+﻿  Renderer.cpp
+C:\Users\Antonio\source\repos\ShootingGame\ShootingGame\src\private\Components\Renderer.cpp(48,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   ShootingGame.vcxproj -> C:\Users\Antonio\source\repos\ShootingGame\Debug\ShootingGame.exe

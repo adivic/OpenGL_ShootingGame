@@ -156,6 +156,7 @@
     <ClCompile Include="src\private\ResourceManager.cpp" />
     <ClCompile Include="src\private\Scene\Floor.cpp" />
     <ClCompile Include="src\private\Scene\House.cpp" />
+    <ClCompile Include="src\private\Scene\Skybox.cpp" />
     <ClCompile Include="src\private\Shader.cpp" />
     <ClCompile Include="src\private\Texture.cpp" />
     <ClCompile Include="src\private\Utility\Math.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="src\public\ResourceManager.h" />
     <ClInclude Include="src\public\Scene\Floor.h" />
     <ClInclude Include="src\public\Scene\House.h" />
+    <ClInclude Include="src\public\Scene\Skybox.h" />
     <ClInclude Include="src\public\Shader.h" />
     <ClInclude Include="src\public\Texture.h" />
     <ClInclude Include="src\public\Utility\Math.h" />
@@ -473,6 +475,8 @@
     <None Include="src\assets\models\Gun\acr.mtl" />
     <None Include="src\assets\shaders\Camera.frag" />
     <None Include="src\assets\shaders\Camera.vert" />
+    <None Include="src\assets\shaders\skybox.frag" />
+    <None Include="src\assets\shaders\skybox.vert" />
     <None Include="src\assets\shaders\Model.frag" />
     <None Include="src\assets\shaders\Model.vert" />
     <None Include="src\assets\shaders\muzzleFlash.frag" />
@@ -622,6 +626,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="src\assets\models\Gun\normal.jpg" />
+    <Image Include="src\assets\skybox\back.jpg" />
+    <Image Include="src\assets\skybox\bottom.jpg" />
+    <Image Include="src\assets\skybox\front.jpg" />
+    <Image Include="src\assets\skybox\left.jpg" />
+    <Image Include="src\assets\skybox\right.jpg" />
+    <Image Include="src\assets\skybox\top.jpg" />
     <Image Include="src\assets\textures\container.jpg" />
     <Image Include="src\assets\textures\floor.jpg" />
     <Image Include="src\assets\textures\muzzleFlash.png" />
